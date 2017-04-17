@@ -1,6 +1,8 @@
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.util.Random;
 
 import javax.swing.*;
 
@@ -15,6 +17,9 @@ public class GUIDemo extends JFrame
     private JPanel panel;
     private JButton biggerButton;
     private JButton smallerButton;
+    private JButton halfButton;
+    private JButton doubleButton;
+    private JButton changeButton;
 
     /**
      * Set up the application.
@@ -27,11 +32,20 @@ public class GUIDemo extends JFrame
         panel = new JPanel();
         biggerButton = new JButton("BIGGER");
         smallerButton = new JButton("SMALLER");
+        halfButton = new JButton("HALF SIZE");
+        doubleButton = new JButton("DOUBLE SIZE");
+        changeButton = new JButton("CHANGE COLOR");
         biggerButton.addActionListener(new ButtonHandler());
         smallerButton.addActionListener(new ButtonHandler());
+        halfButton.addActionListener(new ButtonHandler());
+        doubleButton.addActionListener(new ButtonHandler());
+        changeButton.addActionListener(new ButtonHandler());
         add(panel);
         panel.add(biggerButton);
         panel.add(smallerButton);
+        panel.add(halfButton);
+        panel.add(doubleButton);
+        panel.add(changeButton);
         setVisible(true);
     }
 
@@ -53,11 +67,29 @@ public class GUIDemo extends JFrame
             {
                 setSize(size.width + 10, size.height + 10);
             }
-            else
+            else if (e.getSource().equals(smallerButton))
             {
                 setSize(size.width - 10, size.height - 10);
             }
-
+            else if (e.getSource().equals(halfButton))
+            {
+               setSize(size.width / 2, size.height / 2);
+            }
+            else if (e.getSource().equals(doubleButton))
+            {
+               setSize(size.width * 2, size.height * 2);
+            }        
+            else if (e.getSource().equals(changeButton))
+            {
+               Random rand = new Random();
+               float r = rand.nextFloat();
+               float g = rand.nextFloat();
+               float b = rand.nextFloat();
+               float a = rand.nextFloat();
+               Color color = new Color(r, g, b, a);
+               panel.setBackground(color);
+               panel.repaint();
+            }   
         }
     }
 
