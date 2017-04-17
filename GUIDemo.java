@@ -29,11 +29,9 @@ public class GUIDemo extends JFrame
         smallerButton = new JButton("SMALLER");
         biggerButton.addActionListener(new ButtonHandler());
         smallerButton.addActionListener(new ButtonHandler());
-
         add(panel);
         panel.add(biggerButton);
         panel.add(smallerButton);
-
         setVisible(true);
     }
 
